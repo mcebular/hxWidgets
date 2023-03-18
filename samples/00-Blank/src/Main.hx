@@ -12,6 +12,8 @@ class Main {
         var app = new App();
         app.init();
 
+        var sic = new SingleInstanceChecker();
+
         var frame:Frame = new Frame(null, "hxWidgets");
 
         frame.resize(800, 600);
