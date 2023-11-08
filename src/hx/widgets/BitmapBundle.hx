@@ -42,10 +42,12 @@ class BitmapBundle {
         return new BitmapBundle(WxBitmapBundle.createInstanceFromBitmap(bitmap.bitmapRef.ref).reinterpret());
     }
 
+    @:access(hx.widgets.Image)
     public static function fromImage(image: Image) {
         return new BitmapBundle(WxBitmapBundle.createInstanceFromImage(image.imageRef.ref).reinterpret());
     }
 
+    @:access(hx.widgets.IconBundle)
     public static function fromIconBundle(iconBundle: IconBundle) {
         return new BitmapBundle(WxBitmapBundle.fromIconBundle(iconBundle.iconBundleRef.ref).reinterpret());
     }
