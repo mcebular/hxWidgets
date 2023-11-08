@@ -3,17 +3,22 @@ package hx.widgets;
 #if (wxWidgetsVersion >= version("3.1.6"))
 
 import cpp.Pointer;
+import cpp.Reference;
+import haxe.io.Bytes;
+import haxe.Resource;
 import wx.widgets.BitmapBundle in WxBitmapBundle;
+import wx.widgets.IconBundle in WxIconBundle;
+import wx.widgets.Image in WxImage;
 
 @:access(hx.widgets.Bitmap)
 class BitmapBundle {
     private var _ref:Pointer<WxBitmapBundle>;
 
-    public function new(bitmap:Bitmap = null) {
-        if (bitmap == null) {
+    public function new(ref:Pointer<WxBitmapBundle> = null) {
+        if (ref == null) {
             _ref = WxBitmapBundle.createInstance().reinterpret();
         } else {
-            _ref = WxBitmapBundle.createInstanceFromBitmap(bitmap.bitmapRef.ref).reinterpret();
+            _ref = ref;
         }
     }
 
@@ -23,6 +28,39 @@ class BitmapBundle {
             _ref = null;
         }
         return true;
+    }
+
+    public var isOk(get, null):Bool;
+    private function get_isOk():Bool {
+        return bitmapBundleRef.ptr.isOk();
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Static helpers
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public static function fromBitmap(bitmap: Bitmap) {
+        return new BitmapBundle(WxBitmapBundle.createInstanceFromBitmap(bitmap.bitmapRef.ref).reinterpret());
+    }
+
+    public static function fromImage(image: Image) {
+        return new BitmapBundle(WxBitmapBundle.createInstanceFromImage(image.imageRef.ref).reinterpret());
+    }
+
+    public static function fromIconBundle(iconBundle: IconBundle) {
+        return new BitmapBundle(WxBitmapBundle.fromIconBundle(iconBundle.iconBundleRef.ref).reinterpret());
+    }
+
+    public static function fromHaxeResource(resourceId:String):BitmapBundle {
+        return fromHaxeBytes(Resource.getBytes(resourceId));
+    }
+
+    public static function fromHaxeBytes(bytes:Bytes):BitmapBundle {
+        if (bytes == null) {
+            return null;
+        }
+
+        var image:Image = new Image(bytes);
+        return BitmapBundle.fromImage(image);
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
