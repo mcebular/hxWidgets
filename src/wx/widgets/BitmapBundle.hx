@@ -46,6 +46,8 @@ extern class BitmapBundle {
     // Instance functions
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     @:native("IsOk")                    public function isOk():Bool;
+    @:native("GetDefaultSize")          public function getDefaultSize():Size;
+
 }
 
 #end

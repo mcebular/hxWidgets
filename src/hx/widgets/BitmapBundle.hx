@@ -35,6 +35,12 @@ class BitmapBundle {
         return bitmapBundleRef.ptr.isOk();
     }
 
+    public var defaultSize(get, null):Size;
+    private function get_defaultSize():Size {
+        var size = bitmapBundleRef.ptr.getDefaultSize();
+        return new Size(size.getWidth(), size.getHeight());
+    }
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Static helpers
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
