@@ -22,4 +22,9 @@ extern class IconBundle {
                                         public static inline function createInstanceFromStream(stream:MemoryInputStream):Pointer<IconBundle> {
                                             return Pointer.fromRaw(_newFromStream(stream));
                                         }
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Instance functions
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @:native("GetIconCount")            public function getIconCount():Int;
 }

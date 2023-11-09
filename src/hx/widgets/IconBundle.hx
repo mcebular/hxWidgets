@@ -17,6 +17,11 @@ class IconBundle {
         }
     }
 
+    public var iconCount(get, null):Int;
+    private function get_iconCount():Int {
+        return iconBundleRef.ptr.getIconCount();
+    }
+
     public static function fromHaxeResource(resourceId:String):IconBundle {
         return fromHaxeBytes(Resource.getBytes(resourceId));
     }
