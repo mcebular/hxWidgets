@@ -23,4 +23,5 @@ extern class TopLevelWindow extends NonOwnedWindow {
     */
     @:native("SetIcon")                 public function setIcon(icon:Reference<Icon>):Void;
     //#end
+    @:native("SetIcons")                public function setIcons(icon:Reference<IconBundle>):Void;
 }

@@ -5,6 +5,7 @@ import wx.widgets.TopLevelWindow in WxTopLevelWindow;
 import wx.widgets.WxString;
 
 @:access(hx.widgets.Icon)
+@:access(hx.widgets.IconBundle)
 @:access(hx.widgets.BitmapBundle)
 class TopLevelWindow extends NonOwnedWindow {
 
@@ -60,6 +61,10 @@ class TopLevelWindow extends NonOwnedWindow {
         topLevelWindowRef.ptr.setIcon(icon.iconRef.ref);
     }
     //#end
+
+    public function setIcons(icons: IconBundle) {
+        topLevelWindowRef.ptr.setIcons(icons.iconBundleRef.ref);
+    }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Utility
